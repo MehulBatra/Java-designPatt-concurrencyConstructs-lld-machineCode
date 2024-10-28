@@ -10,7 +10,7 @@ public class MessageQueueMt {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Queue<Integer> queue = new Queue<>();
+        Queue<Integer> queue = new Queue<>(); // think in OOP prespective
 
         Thread thread1 = new Thread(new Runnable() {
 
@@ -75,7 +75,7 @@ class Queue <T> {
     }
 
     public T consumer(String topic, String consumerGroup) throws InterruptedException {
-        synchronized (lock) {
+        synchronized (lock) { // lock on the basis of the consumer group not on the entire method 
             try {
                 consumerOffsets.computeIfAbsent(topic, k -> new ConcurrentHashMap<>());
                 ConcurrentHashMap<String, AtomicInteger> offsets = consumerOffsets.get(topic);
